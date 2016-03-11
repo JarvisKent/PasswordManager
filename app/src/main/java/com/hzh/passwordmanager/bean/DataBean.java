@@ -58,4 +58,16 @@ public class DataBean {
     public void setDesc(String desc) {
         this.desc = desc;
     }
+
+    @Override
+    public String toString() {
+        return "DataBean{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", Account='" + Account + '\'' +
+                ", kind=" + kind +
+                ", password='" + password + '\'' +
+                ", desc='" + desc + '\'' +
+                '}';
+    }
 }

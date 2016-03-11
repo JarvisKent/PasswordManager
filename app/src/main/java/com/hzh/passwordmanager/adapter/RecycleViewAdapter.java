@@ -18,6 +18,7 @@ import java.util.List;
 
 /**
  * Created by JarvisHuang on 2016/3/10.
+ *
  */
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.ViewHolder> {
     public List<String> datas = null;

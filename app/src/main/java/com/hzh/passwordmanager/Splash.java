@@ -11,6 +11,7 @@ import com.github.paolorotolo.appintro.AppIntroFragment;
 /**
  * Created by JarvisHuang on 2016/3/9.
  * 引导界面
+ *
  */
 public class Splash extends AppIntro2{
     @Override
@@ -18,7 +19,6 @@ public class Splash extends AppIntro2{
         addSlide(AppIntroFragment.newInstance("标题1","描述2",R.mipmap.cb0304yp17, Color.WHITE));
         addSlide(AppIntroFragment.newInstance("标题2","描述2",R.mipmap.cb0304yp07, Color.WHITE));
         addSlide(AppIntroFragment.newInstance("标题3","描述2",R.mipmap.cb0304yp11, Color.WHITE));
-
     }
 
     @Override
