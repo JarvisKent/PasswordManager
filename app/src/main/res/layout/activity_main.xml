@@ -8,7 +8,15 @@
     android:background="#fffde7"
     android:layout_height="match_parent">
 
-
+    <!--这个是隐藏的布局，然后通过动态的设置高度达到效果-->
+    <LinearLayout
+        android:id="@+id/ll_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#2196F3"
+        android:orientation="vertical"
+        android:visibility="gone">
+    </LinearLayout>
 
 
         <android.support.v7.widget.Toolbar
