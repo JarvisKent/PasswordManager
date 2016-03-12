@@ -4,6 +4,8 @@
     android:layout_margin="5dp"
     android:layout_height="wrap_content">
     <com.daimajia.swipe.SwipeLayout
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="3dp"
         android:layout_width="match_parent"
         android:id="@+id/swipelayout"
         android:layout_height="wrap_content">
@@ -51,17 +53,21 @@
                 android:textColor="@android:color/holo_blue_dark"
                 android:textSize="20sp"/>
             <TextView
+                android:layout_marginTop="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_name"
+                android:textColor="@android:color/black"
                 android:text="类型：微博账号"
                 android:textSize="15sp"/>
 
 
             <TextView
+                android:layout_marginTop="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_desc"
+                android:textColor="@android:color/black"
                 android:text="描述：我的微博账号"
                 android:textSize="15sp"/>
         </LinearLayout>
