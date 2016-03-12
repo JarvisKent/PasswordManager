@@ -12,12 +12,14 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.MainActivity" />
         <activity android:name=".AppStart">
-<intent-filter>
-    <action android:name="android.intent.action.MAIN"></action>
-    <category android:name="android.intent.category.LAUNCHER"></category>
-</intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".ui.Splash" />
+        <activity android:name=".ui.BaseActivity"></activity>
     </application>
 
 </manifest>
