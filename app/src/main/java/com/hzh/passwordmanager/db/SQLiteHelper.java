@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import org.kymjs.kjframe.database.annotate.Table;
 
 /**
  * Created by JarvisHuang on 2016/3/11.
