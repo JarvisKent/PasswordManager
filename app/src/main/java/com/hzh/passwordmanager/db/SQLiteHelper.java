@@ -26,7 +26,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-// 建表操作
+
         StringBuilder sb = new StringBuilder();
         sb.append("CREATE TABLE IF NOT EXISTS " + TABLE + "(");
         sb.append(ID + " INTEGER PRIMARY KEY AUTOINCREMENT,");

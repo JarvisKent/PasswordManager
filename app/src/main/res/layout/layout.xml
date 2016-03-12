@@ -13,7 +13,14 @@
             android:weightSum="1"
             android:layout_height="match_parent">
             <!--What you want to show-->
-
+            <Button
+                android:id="@+id/motifyData"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@android:color/white"
+                android:background="@android:color/darker_gray"
+                android:text="修改"/>
             <Button
                 android:id="@+id/copyTxt"
                 android:layout_weight="1"

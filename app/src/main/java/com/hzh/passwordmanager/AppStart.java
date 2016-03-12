@@ -2,15 +2,17 @@ package com.hzh.passwordmanager;
 
 import android.content.Intent;
 
+import com.hzh.passwordmanager.ui.MainActivity;
+import com.hzh.passwordmanager.ui.Splash;
+
 import org.kymjs.kjframe.KJActivity;
 import org.kymjs.kjframe.utils.PreferenceHelper;
 
 /**
  * Created by JarvisHuang on 2016/3/9.
- * 进入首页判断
  */
 public class AppStart extends KJActivity {
-    public static String TAG = "appstart";
+    public static String TAG = "APP_START";
     @Override
     public void setRootView() {
         redirectTo();

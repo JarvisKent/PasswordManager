@@ -1,4 +1,4 @@
-package com.hzh.passwordmanager;
+package com.hzh.passwordmanager.ui;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 
 import com.github.paolorotolo.appintro.AppIntro2;
 import com.github.paolorotolo.appintro.AppIntroFragment;
+import com.hzh.passwordmanager.R;
 
 /**
  * Created by JarvisHuang on 2016/3/9.
@@ -16,7 +17,7 @@ import com.github.paolorotolo.appintro.AppIntroFragment;
 public class Splash extends AppIntro2{
     @Override
     public void init(@Nullable Bundle savedInstanceState) {
-        addSlide(AppIntroFragment.newInstance("标题1","描述2",R.mipmap.cb0304yp17, Color.WHITE));
+        addSlide(AppIntroFragment.newInstance("标题1","描述2", R.mipmap.cb0304yp17, Color.WHITE));
         addSlide(AppIntroFragment.newInstance("标题2","描述2",R.mipmap.cb0304yp07, Color.WHITE));
         addSlide(AppIntroFragment.newInstance("标题3","描述2",R.mipmap.cb0304yp11, Color.WHITE));
     }
