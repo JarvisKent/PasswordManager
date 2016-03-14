@@ -1,20 +1,23 @@
 package com.hzh.passwordmanager.ui;
 
 
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.hzh.passwordmanager.R;
-import com.hzh.passwordmanager.adapter.RecycleViewAdapter;
+import com.hzh.passwordmanager.ui.fragment.MainFragment;
+import com.hzh.passwordmanager.ui.fragment.ModifyShowPassword;
+import com.hzh.passwordmanager.ui.fragment.SettingFragment;
+import com.hzh.passwordmanager.ui.fragment.WriteAndRead;
+import com.hzh.passwordmanager.utils.TranslucentStatus;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -26,50 +29,75 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-
 public class MainActivity extends BaseActivity {
 
-    private RecyclerView recyclerView;
-    private boolean isFill = false;
+    FragmentManager mFM;
+    FrameLayout fl;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //沉浸式状态栏
-       initState();
-
         //自定义Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tl_custom);
+        toolbar = (Toolbar) findViewById(R.id.tl_custom);
+        toolbar.setTitle(R.string.app_name);
         setSupportActionBar(toolbar);
 
+        //沉浸式状态栏
+        TranslucentStatus.initState(this,R.id.ll_bar);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        //创建默认的线性LayoutManager
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(mLayoutManager);
-        //如果可以确定每个item的高度是固定的，设置这个选项可以提高性能
-        recyclerView.setHasFixedSize(true);
-        //创建并设置Adapter
-        List<String> list = new ArrayList<String>();
-        for(int i=0;i<100;i++)
-            list.add("第"+i+"个");
-        RecycleViewAdapter mAdapter = new RecycleViewAdapter(list,MainActivity.this);
-        recyclerView.setAdapter(mAdapter);
+        changeMain();
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        SlideDraw(toolbar);
+    }
 
+    private void changeMain(){
+        Fragment f = new MainFragment();
+        if (null == mFM)
+            mFM = getSupportFragmentManager();
+        FragmentTransaction ft = mFM.beginTransaction();
+        ft.replace(R.id.fl_content, f);
+        ft.commit();
+    }
+    private void changeSetting(){
+        Fragment f = new SettingFragment();
+        if (null == mFM)
+            mFM = getSupportFragmentManager();
+        FragmentTransaction ft = mFM.beginTransaction();
+        ft.replace(R.id.fl_content, f);
+        ft.commit();
+    }
+    private void changeWriteAndRead(){
+        Fragment f = new WriteAndRead();
+        if (null == mFM)
+            mFM = getSupportFragmentManager();
+        FragmentTransaction ft = mFM.beginTransaction();
+        ft.replace(R.id.fl_content, f);
+        ft.commit();
+    }
+    private void changeModifyPassword(){
+        Fragment f = new ModifyShowPassword();
+        if (null == mFM)
+            mFM = getSupportFragmentManager();
+        FragmentTransaction ft = mFM.beginTransaction();
+        ft.replace(R.id.fl_content, f);
+        ft.commit();
+    }
+    private void SlideDraw(Toolbar toolbar) {
         //自定义侧边栏
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName(R.string.drawer_item_home).withIcon(R.drawable.material_drawer_badge);
         SecondaryDrawerItem item2 = new SecondaryDrawerItem().withName(R.string.writeAndread);
 
         AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
-                .withHeaderBackground(R.mipmap.cb0304yp07)
+                .withHeaderBackground(R.mipmap.cb0304yp02)
                 .addProfiles(
-                        new ProfileDrawerItem().withName("Jarvis").withEmail("602955736@qq.com").withIcon(getResources().getDrawable(R.mipmap.cb0304yp11))
+                        new ProfileDrawerItem().withName("hzh").withEmail("000000000@qq.com").withIcon(getResources().getDrawable(R.mipmap.ic_launcher))
                 )
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
@@ -80,7 +108,7 @@ public class MainActivity extends BaseActivity {
                 })
                 .build();
 
-                 Drawer result =  new DrawerBuilder().withActivity(this).withToolbar(toolbar).
+        new DrawerBuilder().withActivity(this).withToolbar(toolbar).
                 withAccountHeader(headerResult)
                 .withActionBarDrawerToggle(true)
                 .addDrawerItems(
@@ -88,62 +116,39 @@ public class MainActivity extends BaseActivity {
                         new DividerDrawerItem(),
                         item2,
                         new SecondaryDrawerItem().withName(R.string.modifyPwd),
-                        new SecondaryDrawerItem().withName(R.string.drawer_item_settings),
-                        new SecondaryDrawerItem().withName(R.string.contact_us)
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_settings)
 
                 ) .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
 
-                    @Override
-                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        Toast.makeText(MainActivity.this,position+"个",Toast.LENGTH_LONG).show();
-                        return false;
-                    }
-                }).build();
+            @Override
+            public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
 
+                changeFragment(position);
+
+                return false;
+            }
+        }).build();
     }
 
-    /**
-     * 动态的设置状态栏  实现沉浸式状态栏
-     *
-     */
-    private void initState() {
-
-        //当系统版本为4.4或者4.4以上时可以使用沉浸式状态栏
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            //透明状态栏
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            //透明导航栏
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            //
-            LinearLayout linear_bar = (LinearLayout) findViewById(R.id.ll_bar);
-            linear_bar.setVisibility(View.VISIBLE);
-            //获取到状态栏的高度
-            int statusHeight = getStatusBarHeight();
-            //动态的设置隐藏布局的高度
-            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) linear_bar.getLayoutParams();
-            params.height = statusHeight;
-            linear_bar.setLayoutParams(params);
+    private void changeFragment(int position) {
+        switch(position){
+            case 1://首页
+                changeMain();
+                break;
+            case 3://导入导出
+                changeWriteAndRead();
+                break;
+            case 4://修改查看密码
+                changeModifyPassword();
+                break;
+            case 5://设置
+                changeSetting();
+                break;
+            default:
+                Toast.makeText(MainActivity.this,"选了什么"+position,Toast.LENGTH_LONG).show();
+                break;
         }
     }
-
-    /**
-     * 通过反射的方式获取状态栏高度
-     *
-     * @return
-     */
-    private int getStatusBarHeight() {
-        try {
-            Class<?> c = Class.forName("com.android.internal.R$dimen");
-            Object obj = c.newInstance();
-            Field field = c.getField("status_bar_height");
-            int x = Integer.parseInt(field.get(obj).toString());
-            return getResources().getDimensionPixelSize(x);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return 0;
-    }
-
 
     //创建Menu
     @Override
@@ -154,11 +159,7 @@ public class MainActivity extends BaseActivity {
     //menu项的点击事件
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                Toast.makeText(MainActivity.this, "home", Toast.LENGTH_LONG).show();
-                return true;
-        }
+        Toast.makeText(MainActivity.this, "more", Toast.LENGTH_LONG).show();
         return super.onOptionsItemSelected(item);
     }
 

@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.Splash" />
-        <activity android:name=".ui.BaseActivity"></activity>
+        <activity android:name=".ui.BaseActivity" />
     </application>
 
 </manifest>

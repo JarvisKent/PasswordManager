@@ -5,7 +5,7 @@
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="#fffde7"
+    android:background="#fffffe"
     android:layout_height="match_parent">
 
     <!--这个是隐藏的布局，然后通过动态的设置高度达到效果-->
@@ -19,22 +19,19 @@
     </LinearLayout>
 
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/tl_custom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#2196F3"
-            android:minHeight="?attr/actionBarSize"
-            app:theme="@style/ToolbarTheme">
-
-        </android.support.v7.widget.Toolbar>
-
-
-    <!--可滑动的布局内容-->
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tl_custom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:background="#2196F3"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/ToolbarTheme">
+
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:id="@+id/fl_content"
+        android:layout_height="match_parent"></FrameLayout>
 
 </LinearLayout>

@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.daimajia.swipe.SwipeLayout;
 import com.hzh.passwordmanager.R;
@@ -41,18 +40,11 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 //        viewHolder.mTextView.setText(datas.get(position));
         viewHolder.swipeLayout.setShowMode(SwipeLayout.ShowMode.LayDown);
 
-        viewHolder.setTxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                viewHolder.swipeLayout.close();
-                Toast.makeText(context,"复制"+datas.get(position)+position,Toast.LENGTH_SHORT).show();
-            }
-        });
         viewHolder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              areYouSure();
+
+                areYouSure();
             }
 
             private void areYouSure() {
@@ -94,22 +86,14 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         public TextView mTextView;
         public TextView m2;
         public com.daimajia.swipe.SwipeLayout swipeLayout;
-        public Button setTxt;
         public Button delete;
         public ViewHolder(View view) {
             super(view);
             mTextView = (TextView) view.findViewById(R.id.tv_name);
             m2 = (TextView) view.findViewById(R.id.tv_account);
             swipeLayout = (SwipeLayout) view.findViewById(R.id.swipelayout);
-
-            setTxt = (Button) view.findViewById(R.id.copyTxt);
             delete = (Button) view.findViewById(R.id.delete);
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(context,"点击",Toast.LENGTH_LONG).show();
-                }
-            });
+
         }
     }
 }

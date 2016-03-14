@@ -2,8 +2,8 @@ package com.hzh.passwordmanager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-import com.hzh.passwordmanager.ui.BaseActivity;
 import com.hzh.passwordmanager.ui.MainActivity;
 import com.hzh.passwordmanager.ui.Splash;
 import com.hzh.passwordmanager.utils.PreferencesUtils;
@@ -11,7 +11,7 @@ import com.hzh.passwordmanager.utils.PreferencesUtils;
 /**
  * Created by JarvisHuang on 2016/3/9.
  */
-public class AppStart extends BaseActivity {
+public class AppStart extends AppCompatActivity {
     public static String TAG = "APP_START";
 
     @Override
