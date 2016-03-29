@@ -24,17 +24,27 @@ public class DataDao {
         helper = new SQLiteHelper(context);
     }
 
+    /**
+     * open database
+     */
     public void open(){
         if(dataBase == null || !dataBase.isOpen()){
             dataBase = helper.getWritableDatabase();
         }
     }
 
+    /**
+     * close database
+     */
     public void close(){
         dataBase.close();
         dataBase = null;
     }
 
+    /**
+     * check db is not null and open
+     * @return
+     */
     public boolean checkDb(){
         open();
         if (dataBase !=null && dataBase.isOpen()){
@@ -43,6 +53,11 @@ public class DataDao {
         return false;
     }
 
+    /**
+     * add a data to database.
+     * @param data
+     * @return  为-1 添加出错
+     */
     public int add(DataBean data){
         ContentValues values = new ContentValues();
 
@@ -58,9 +73,21 @@ public class DataDao {
         return -1;
     }
 
-    public int delete(int id){
+    public int deleteById(int id){
         if (checkDb()){
             return dataBase.delete(SQLiteHelper.TABLE,SQLiteHelper.ID+"=?",new String[]{id+""});
+        }
+        return -1;
+    }
+    public int deleteByAccount(String account){
+        if (checkDb()){
+            return dataBase.delete(SQLiteHelper.TABLE,SQLiteHelper.ACCOUNT+"=?",new String[]{account});
+        }
+        return -1;
+    }
+    public int deleteByName(String name){
+        if (checkDb()){
+            return dataBase.delete(SQLiteHelper.TABLE,SQLiteHelper.NAME+"=?",new String[]{name});
         }
         return -1;
     }
@@ -95,7 +122,6 @@ public class DataDao {
                 bean.setDesc(cursor.getString(cursor.getColumnIndex(SQLiteHelper.DESC)));
                 bean.setAccount(cursor.getString(cursor.getColumnIndex(SQLiteHelper.ACCOUNT)));
                 bean.setName(cursor.getString(cursor.getColumnIndex(SQLiteHelper.NAME)));
-
             }
             cursor.close();
             return  bean;
@@ -174,7 +200,5 @@ public class DataDao {
         }
         return null;
     }
-
-
 
 }

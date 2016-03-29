@@ -1,4 +1,4 @@
-package com.hzh.passwordmanager.ui;
+package com.hzh.passwordmanager.ui.activity;
 
 
 import android.os.Bundle;
@@ -13,7 +13,8 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.hzh.passwordmanager.R;
-import com.hzh.passwordmanager.ui.fragment.MainFragment;
+import com.hzh.passwordmanager.ui.base.BaseActivity;
+import com.hzh.passwordmanager.ui.fragment.MainListFragment;
 import com.hzh.passwordmanager.ui.fragment.ModifyShowPassword;
 import com.hzh.passwordmanager.ui.fragment.SettingFragment;
 import com.hzh.passwordmanager.ui.fragment.WriteAndRead;
@@ -29,10 +30,15 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
+import butterknife.Bind;
+
 public class MainActivity extends BaseActivity {
 
     FragmentManager mFM;
+
     FrameLayout fl;
+
+    @Bind(R.id.tl_custom)
     Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +46,6 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         //自定义Toolbar
-        toolbar = (Toolbar) findViewById(R.id.tl_custom);
         toolbar.setTitle(R.string.app_name);
         setSupportActionBar(toolbar);
 
@@ -57,7 +62,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void changeMain(){
-        Fragment f = new MainFragment();
+        Fragment f = new MainListFragment();
         if (null == mFM)
             mFM = getSupportFragmentManager();
         FragmentTransaction ft = mFM.beginTransaction();

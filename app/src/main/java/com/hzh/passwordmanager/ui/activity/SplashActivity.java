@@ -1,4 +1,4 @@
-package com.hzh.passwordmanager.ui;
+package com.hzh.passwordmanager.ui.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,7 +13,7 @@ import com.hzh.passwordmanager.R;
  * Created by JarvisHuang on 2016/3/9.
  * 引导界面
  */
-public class Splash extends AppIntro2{
+public class SplashActivity extends AppIntro2{
     @Override
     public void init(@Nullable Bundle savedInstanceState) {
         addSlide(AppIntroFragment.newInstance("标题1","描述24", R.mipmap.cb0304yp17, Color.WHITE));
@@ -25,7 +25,7 @@ public class Splash extends AppIntro2{
     @Override
     public void onDonePressed() {
         Intent intent = new Intent();
-        intent.setClass(Splash.this,MainActivity.class);
+        intent.setClass(SplashActivity.this,MainActivity.class);
         startActivity(intent);
         finish();
 

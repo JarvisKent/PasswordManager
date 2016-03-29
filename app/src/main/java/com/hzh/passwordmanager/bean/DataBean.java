@@ -1,15 +1,43 @@
 package com.hzh.passwordmanager.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by JarvisHuang on 2016/3/9.
  */
-public class DataBean {
+public class DataBean implements Parcelable{
     private int id;
     private String name;
     private String Account;
     private int kind;
     private String password;
     private String desc;
+
+//    public DataBean(String name,String account,int kind,String password,String desc){
+//        this.name = name;
+//        this.Account = account;
+//        this.kind = kind;
+//        this.password = password;
+//        this.desc = desc;
+//    }
+
+    public DataBean(){}
+
+
+    public static final Creator<DataBean> CREATOR = new Creator<DataBean>() {
+        @Override
+        public DataBean createFromParcel(Parcel in) {
+            return new DataBean(in);
+        }
+
+        @Override
+        public DataBean[] newArray(int size) {
+            return new DataBean[size];
+        }
+    };
+
+
 
     public int getId() {
         return id;
@@ -69,5 +97,28 @@ public class DataBean {
                 ", password='" + password + '\'' +
                 ", desc='" + desc + '\'' +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeString(this.Account);
+        dest.writeString(this.name);
+        dest.writeString(this.password);
+        dest.writeInt(this.kind);
+        dest.writeString(this.desc);
+    }
+    protected DataBean(Parcel in) {
+        this.id = in.readInt();
+        this.kind = in.readInt();
+        this.password = in.readString();
+        this.name = in.readString();
+        this.Account = in.readString();
+        this.desc = in.readString();
     }
 }

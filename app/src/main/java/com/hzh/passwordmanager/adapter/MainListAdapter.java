@@ -19,10 +19,10 @@ import java.util.List;
  * Created by JarvisHuang on 2016/3/10.
  *
  */
-public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.ViewHolder> {
+public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ViewHolder> {
     public List<String> datas = null;
     public Context context;
-    public RecycleViewAdapter(List<String > list,Context context) {
+    public MainListAdapter(List<String > list, Context context) {
         this.datas = list;
         this.context = context;
     }

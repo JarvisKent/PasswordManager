@@ -8,10 +8,10 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by JarvisHuang on 2016/3/11.
  */
 public class SQLiteHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "Data";
+    private static final String DATABASE_NAME = "PasswordManagerDataBase";
     private static final int DATABASE_VERSION = 1;
 
-    public static final String TABLE = "pwd_info";
+    public static final String TABLE = "passwordManagerTable";
     public static final String ID = "id";
     public static final String NAME = "name";
     public static final String ACCOUNT = "account";

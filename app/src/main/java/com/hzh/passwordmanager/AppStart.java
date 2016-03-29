@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.hzh.passwordmanager.ui.MainActivity;
-import com.hzh.passwordmanager.ui.Splash;
+import com.hzh.passwordmanager.ui.activity.MainActivity;
+import com.hzh.passwordmanager.ui.activity.SplashActivity;
 import com.hzh.passwordmanager.utils.PreferencesUtils;
 
 /**
@@ -26,7 +26,7 @@ public class AppStart extends AppCompatActivity {
         boolean isFirst = PreferencesUtils.getBoolean(this,"firstOpen",true);
         if(isFirst){
             PreferencesUtils.putBoolean(this,"firstOpen",false);
-            intent.setClass(this, Splash.class);
+            intent.setClass(this, SplashActivity.class);
         }else{
             intent.setClass(this,MainActivity.class);
         }
