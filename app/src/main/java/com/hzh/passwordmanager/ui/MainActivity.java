@@ -88,6 +88,7 @@ public class MainActivity extends BaseActivity {
         ft.replace(R.id.fl_content, f);
         ft.commit();
     }
+
     private void SlideDraw(Toolbar toolbar) {
         //自定义侧边栏
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName(R.string.drawer_item_home).withIcon(R.drawable.material_drawer_badge);
@@ -156,10 +157,11 @@ public class MainActivity extends BaseActivity {
         getMenuInflater().inflate(R.menu.main, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
     //menu项的点击事件
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Toast.makeText(MainActivity.this, "more", Toast.LENGTH_LONG).show();
+        Toast.makeText(MainActivity.this, "关于作者", Toast.LENGTH_LONG).show();
         return super.onOptionsItemSelected(item);
     }
 
