@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_name"
                 android:textColor="@android:color/black"
-                android:text="类型：微博账号"
+                android:text="类型：账号"
                 android:textSize="15sp"/>
 
 
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_desc"
                 android:textColor="@android:color/black"
-                android:text="描述：我的微博账号"
+                android:text="描述：什么账号"
                 android:textSize="15sp"/>
         </LinearLayout>
     </com.daimajia.swipe.SwipeLayout>

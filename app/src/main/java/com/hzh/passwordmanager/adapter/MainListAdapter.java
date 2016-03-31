@@ -70,12 +70,11 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ViewHo
                 builder.create().show();
             }
         });
-
     }
-
-
-
-    //获取数据的数量
+    
+    /**
+     *获取数据的数量
+     */
     @Override
     public int getItemCount() {
         return datas.size();

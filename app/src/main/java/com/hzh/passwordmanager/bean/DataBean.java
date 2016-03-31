@@ -24,7 +24,6 @@ public class DataBean implements Parcelable{
 
     public DataBean(){}
 
-
     public static final Creator<DataBean> CREATOR = new Creator<DataBean>() {
         @Override
         public DataBean createFromParcel(Parcel in) {

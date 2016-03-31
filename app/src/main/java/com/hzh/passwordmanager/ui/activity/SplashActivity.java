@@ -28,7 +28,6 @@ public class SplashActivity extends AppIntro2{
         intent.setClass(SplashActivity.this,MainActivity.class);
         startActivity(intent);
         finish();
-
     }
 
     @Override

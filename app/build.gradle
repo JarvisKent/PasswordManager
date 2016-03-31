@@ -22,22 +22,18 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    //引导页
-    //包含recycleView
     //类似QQ消息右滑动可删除
     compile files('libs/AndroidSwipeLayout-v1.1.8.jar')
     //侧边栏
     compile('com.mikepenz:materialdrawer:5.1.2@aar') {
         transitive = true
     }
+
     compile 'com.android.support:appcompat-v7:23.2.0'
     compile 'com.android.support:cardview-v7:23.2.0'
     //引导页
     compile 'com.github.paolorotolo:appintro:3.4.0'
     compile 'com.android.support:design:23.2.0'
-    compile 'com.android.support:support-v4:23.2.0'
-
-    //依赖注入
-    compile 'com.jakewharton:butterknife:7.0.1'
+//    compile 'com.android.support:support-v4:23.2.0'
 
 }

@@ -13,10 +13,8 @@ public class PreferencesUtils {
     private PreferencesUtils() {
         throw new AssertionError();
     }
-
     /**
      * put string preferences
-     *
      * @param context
      * @param key The name of the preference to modify
      * @param value The new value for the preference
@@ -31,7 +29,6 @@ public class PreferencesUtils {
 
     /**
      * get string preferences
-     *
      * @param context
      * @param key The name of the preference to retrieve
      * @return The preference value if it exists, or null. Throws ClassCastException if there is a preference with this

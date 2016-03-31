@@ -1,11 +1,13 @@
 package com.hzh.passwordmanager.ui.activity;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +20,7 @@ import com.hzh.passwordmanager.ui.fragment.MainListFragment;
 import com.hzh.passwordmanager.ui.fragment.ModifyShowPassword;
 import com.hzh.passwordmanager.ui.fragment.SettingFragment;
 import com.hzh.passwordmanager.ui.fragment.WriteAndRead;
+import com.hzh.passwordmanager.utils.ActivityCollector;
 import com.hzh.passwordmanager.utils.TranslucentStatus;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -30,7 +33,6 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
-import butterknife.Bind;
 
 public class MainActivity extends BaseActivity {
 
@@ -38,20 +40,18 @@ public class MainActivity extends BaseActivity {
 
     FrameLayout fl;
 
-    @Bind(R.id.tl_custom)
     Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        toolbar = (Toolbar) findViewById(R.id.tl_custom);
         //自定义Toolbar
         toolbar.setTitle(R.string.app_name);
         setSupportActionBar(toolbar);
 
         //沉浸式状态栏
         TranslucentStatus.initState(this,R.id.ll_bar);
-
         changeMain();
     }
 
@@ -59,6 +59,11 @@ public class MainActivity extends BaseActivity {
     protected void onStart() {
         super.onStart();
         SlideDraw(toolbar);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     private void changeMain(){
@@ -93,7 +98,6 @@ public class MainActivity extends BaseActivity {
         ft.replace(R.id.fl_content, f);
         ft.commit();
     }
-
     private void SlideDraw(Toolbar toolbar) {
         //自定义侧边栏
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName(R.string.drawer_item_home).withIcon(R.drawable.material_drawer_badge);
@@ -123,7 +127,6 @@ public class MainActivity extends BaseActivity {
                         item2,
                         new SecondaryDrawerItem().withName(R.string.modifyPwd),
                         new SecondaryDrawerItem().withName(R.string.drawer_item_settings)
-
                 ) .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
 
             @Override
@@ -135,7 +138,6 @@ public class MainActivity extends BaseActivity {
             }
         }).build();
     }
-
     private void changeFragment(int position) {
         switch(position){
             case 1://首页
@@ -168,6 +170,20 @@ public class MainActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         Toast.makeText(MainActivity.this, "关于作者", Toast.LENGTH_LONG).show();
         return super.onOptionsItemSelected(item);
+    }
+
+    private long exitTime = 0;
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+            if((System.currentTimeMillis()-exitTime) > 2000){
+                Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                ActivityCollector.finishAll();
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }

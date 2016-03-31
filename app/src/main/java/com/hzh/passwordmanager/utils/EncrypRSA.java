@@ -73,6 +73,7 @@ public class EncrypRSA {
      * @throws InvalidKeyException
      */
     public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeyException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+
         EncrypRSA rsa = new EncrypRSA();
         String msg = "郭XX-精品相声";
         //KeyPairGenerator类用于生成公钥和私钥对，基于RSA算法生成对象

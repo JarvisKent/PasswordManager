@@ -79,6 +79,7 @@ public class DataDao {
         }
         return -1;
     }
+
     public int deleteByAccount(String account){
         if (checkDb()){
             return dataBase.delete(SQLiteHelper.TABLE,SQLiteHelper.ACCOUNT+"=?",new String[]{account});
@@ -128,6 +129,7 @@ public class DataDao {
         }
         return null;
     }
+
     public List<DataBean> queryByKind(int kind){
         if (checkDb()){
             List<DataBean> list = new ArrayList<DataBean>();
@@ -152,7 +154,9 @@ public class DataDao {
         }
         return null;
     }
+
     public List<DataBean> queryByName(String name){
+
         if (checkDb()){
             List<DataBean> list = new ArrayList<DataBean>();
             Cursor cursor = dataBase.query(SQLiteHelper.TABLE,null,SQLiteHelper.NAME+"=?",new String[]{name},null,null,null);

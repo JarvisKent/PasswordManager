@@ -19,12 +19,10 @@ public class WriteAndRead extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_write_and_read, container, false);
-    }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+        View view = inflater.inflate(R.layout.fragment_write_and_read, container, false);
+
+        return view;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.hzh.passwordmanager.utils;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -11,7 +12,6 @@ import java.util.List;
  */
 public class ActivityCollector {
     public static List<AppCompatActivity> list = new ArrayList<AppCompatActivity>();
-
     public static void addActivity(AppCompatActivity activity){
         if(!list.contains(activity)) {
             list.add(activity);
@@ -19,9 +19,12 @@ public class ActivityCollector {
     }
 
     public static void removeActivity(AppCompatActivity activity){
-
-        list.remove(activity);
+        if(list.contains(activity)) {
+            list.remove(activity);
+        }
     }
+
+    //关闭全部activity
     public static void finishAll(){
         for (AppCompatActivity activity:list){
             if(!activity.isFinishing()){

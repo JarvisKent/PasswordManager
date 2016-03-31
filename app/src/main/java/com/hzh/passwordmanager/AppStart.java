@@ -19,7 +19,6 @@ public class AppStart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         redirectTo();
     }
-
     private void redirectTo() {
         Intent intent = new Intent();
 

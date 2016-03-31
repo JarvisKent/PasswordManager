@@ -5,11 +5,11 @@
     tools:context="com.hzh.passwordmanager.ui.fragment.SettingFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.ListViewCompat
+        android:id="@+id/lv_setting"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="设置"
-        android:textColor="#000000"
-        android:textSize="30sp"/>
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.ListViewCompat>
 
 </FrameLayout>

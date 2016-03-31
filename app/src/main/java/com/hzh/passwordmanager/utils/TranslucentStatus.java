@@ -12,13 +12,10 @@ import java.lang.reflect.Field;
 
 /**
  * Created by JarvisHuang on 2016/3/14.
+ *  动态的设置状态栏  实现沉浸式状态栏
  */
 public class TranslucentStatus {
 
-    /**
-     * 动态的设置状态栏  实现沉浸式状态栏
-     *
-     */
     public static void initState(AppCompatActivity activity,int layout) {
 
         //当系统版本为4.4或者4.4以上时可以使用沉浸式状态栏
@@ -38,7 +35,6 @@ public class TranslucentStatus {
             linear_bar.setLayoutParams(params);
         }
     }
-
 
     /**
      * 通过反射的方式获取状态栏高度
