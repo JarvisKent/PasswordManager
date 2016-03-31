@@ -40,7 +40,6 @@ public class MainListFragment extends BaseFragment {
         v.findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"添加",Toast.LENGTH_SHORT).show();
                 Fragment f = new AddDataFragment();
                 if (null == mFM)
                     mFM = getActivity().getSupportFragmentManager();
@@ -67,8 +66,7 @@ public class MainListFragment extends BaseFragment {
     private void initData() {
         //创建并设置Adapter
         List<String> list = new ArrayList<String>();
-        for(int i=0;i<100;i++)
-            list.add("第"+i+"个");
+        for(int i=0;i<100;i++)  list.add("第"+i+"个");
         MainListAdapter mAdapter = new MainListAdapter(list,getActivity());
         recyclerView.setAdapter(mAdapter);
     }

@@ -14,14 +14,6 @@ public class DataBean implements Parcelable{
     private String password;
     private String desc;
 
-//    public DataBean(String name,String account,int kind,String password,String desc){
-//        this.name = name;
-//        this.Account = account;
-//        this.kind = kind;
-//        this.password = password;
-//        this.desc = desc;
-//    }
-
     public DataBean(){}
 
     public static final Creator<DataBean> CREATOR = new Creator<DataBean>() {
