@@ -15,11 +15,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.hzh.passwordmanager.R;
+import com.hzh.passwordmanager.db.dao.DataDao;
 import com.hzh.passwordmanager.ui.base.BaseFragment;
 /**
  * Created by JarvisHuang on 2016/3/31.
  */
 public class AddDataFragment extends BaseFragment implements View.OnClickListener{
+
+    private DataDao dataDao;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 

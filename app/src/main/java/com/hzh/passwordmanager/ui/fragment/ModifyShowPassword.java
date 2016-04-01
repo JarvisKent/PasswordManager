@@ -18,6 +18,7 @@ public class ModifyShowPassword extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v =  inflater.inflate(R.layout.fragment_modify_show_password, container, false);
+
         return v;
     }
 }

@@ -2,8 +2,6 @@ package com.hzh.passwordmanager.ui.activity;
 
 
 import android.content.DialogInterface;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -94,6 +92,7 @@ public class MainActivity extends BaseActivity {
         ft.commit();
     }
     private void changeModifyPassword(){
+
         Fragment f = new ModifyShowPassword();
         if (null == mFM)
             mFM = getSupportFragmentManager();
@@ -134,13 +133,12 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-
                 changeFragment(position);
-
                 return false;
             }
         }).build();
     }
+
     private void changeFragment(int position) {
         switch(position){
             case 1://首页
@@ -156,7 +154,6 @@ public class MainActivity extends BaseActivity {
                 changeSetting();
                 break;
             default:
-                Toast.makeText(MainActivity.this,"选了什么"+position,Toast.LENGTH_LONG).show();
                 break;
         }
     }
@@ -175,7 +172,7 @@ public class MainActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    private long exitTime = 0;
+    //  private long exitTime = 0;
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
 //        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
@@ -205,7 +202,7 @@ public class MainActivity extends BaseActivity {
             }
         });
         builder.create().show();
+
         return true;
     }
-
 }

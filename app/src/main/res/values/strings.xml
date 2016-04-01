@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">This is Material Design</string>
+    <string name="app_name">Material Design</string>
     <string name="drawer_item_home">主页</string>
     <string name="open">打开</string>
     <string name="close">关闭</string>

@@ -17,7 +17,6 @@ import java.util.List;
 
 /**
  * Created by JarvisHuang on 2016/3/10.
- *
  */
 public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ViewHolder> {
     public List<String> datas = null;
@@ -71,7 +70,7 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ViewHo
             }
         });
     }
-    
+
     /**
      *获取数据的数量
      */
@@ -92,7 +91,7 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ViewHo
             m2 = (TextView) view.findViewById(R.id.tv_account);
             swipeLayout = (SwipeLayout) view.findViewById(R.id.swipelayout);
             delete = (Button) view.findViewById(R.id.delete);
-
         }
     }
+
 }

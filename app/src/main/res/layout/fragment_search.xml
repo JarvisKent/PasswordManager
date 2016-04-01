@@ -4,14 +4,52 @@
     android:orientation="vertical"
     android:background="#2196F3"
     android:layout_height="match_parent">
-    <TextView
+    <RadioGroup
+        android:id="@+id/rg_search"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="搜索"
-        android:textSize="30sp"
-        android:textColor="#000000"/>
+        android:gravity="center"
+        android:orientation="horizontal">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="名称"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="类别"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="账号"/>
+    </RadioGroup>
     <EditText
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="输入关键字"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/btn_search"
+            android:layout_height="wrap_content"
+            android:text=" 搜 索 "/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/btn_reset"
+            android:layout_height="wrap_content"
+            android:text="重置"/>
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>
