@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:background="#5196F2"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.MainListFragment">
@@ -12,12 +13,70 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-    <android.support.design.widget.FloatingActionButton
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/fab"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="16dp"
+
         android:layout_gravity="bottom|right"
-        android:src="@android:drawable/ic_input_add"
-        android:layout_margin="16dp"
-        />
+        fab:menu_fab_size="normal"
+        fab:menu_showShadow="true"
+        fab:menu_shadowColor="#66000000"
+        fab:menu_shadowRadius="4dp"
+        fab:menu_shadowXOffset="1dp"
+        fab:menu_shadowYOffset="3dp"
+        fab:menu_colorNormal="#2196F3"
+        fab:menu_colorPressed="#2196F3"
+        fab:menu_colorRipple="#99FFFFFF"
+        fab:menu_animationDelayPerItem="50"
+        fab:menu_icon="@drawable/fab_add"
+        fab:menu_buttonSpacing="0dp"
+        fab:menu_labels_margin="0dp"
+        fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+        fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
+        fab:menu_labels_paddingTop="4dp"
+        fab:menu_labels_paddingRight="8dp"
+        fab:menu_labels_paddingBottom="4dp"
+        fab:menu_labels_paddingLeft="8dp"
+        fab:menu_labels_padding="8dp"
+        fab:menu_labels_textColor="#FFFFFF"
+        fab:menu_labels_textSize="14sp"
+        fab:menu_labels_cornerRadius="3dp"
+        fab:menu_labels_colorNormal="#333333"
+        fab:menu_labels_colorPressed="#444444"
+        fab:menu_labels_colorRipple="#66FFFFFF"
+        fab:menu_labels_showShadow="true"
+        fab:menu_labels_singleLine="false"
+        fab:menu_labels_ellipsize="none"
+        fab:menu_labels_maxLines="-1"
+        fab:menu_labels_position="left"
+        fab:menu_openDirection="up"
+        fab:menu_backgroundColor="@android:color/transparent"
+        fab:menu_fab_label="菜单">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/menu_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="#2196F3"
+            fab:fab_colorPressed="#2196F3"
+            android:src="@android:drawable/ic_input_add"
+            fab:fab_size="mini"
+            fab:fab_label="添加" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/menu_search"
+            android:layout_width="wrap_content"
+            fab:fab_colorNormal="#2196F3"
+            fab:fab_colorPressed="#2196F3"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_search"
+            fab:fab_size="mini"
+            fab:fab_label="搜索" />
+    </com.github.clans.fab.FloatingActionMenu>
+
+
 </FrameLayout>

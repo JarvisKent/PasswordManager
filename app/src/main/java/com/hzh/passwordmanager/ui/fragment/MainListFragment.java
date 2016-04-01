@@ -1,11 +1,13 @@
 package com.hzh.passwordmanager.ui.fragment;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,12 +34,15 @@ public class MainListFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
     }
     FragmentManager mFM;
+    private boolean isInvisiable = true;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_main, container, false);
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
-        v.findViewById(R.id.fab).setOnClickListener(new View.OnClickListener() {
+        final com.github.clans.fab.FloatingActionButton addData = (com.github.clans.fab.FloatingActionButton) v.findViewById(R.id.menu_add);
+        final com.github.clans.fab.FloatingActionButton searchData = (com.github.clans.fab.FloatingActionButton) v.findViewById(R.id.menu_search);
+        addData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment f = new AddDataFragment();
@@ -45,6 +50,19 @@ public class MainListFragment extends BaseFragment {
                     mFM = getActivity().getSupportFragmentManager();
                 FragmentTransaction ft = mFM.beginTransaction();
                 ft.replace(R.id.fl_content, f);
+                ft.commit();
+
+            }
+        });
+        searchData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment f = new SearchDataFragment();
+                if(null == mFM){
+                    mFM = getActivity().getSupportFragmentManager();
+                }
+                FragmentTransaction ft = mFM.beginTransaction();
+                ft.replace(R.id.fl_content,f);
                 ft.commit();
             }
         });
@@ -70,4 +88,5 @@ public class MainListFragment extends BaseFragment {
         MainListAdapter mAdapter = new MainListAdapter(list,getActivity());
         recyclerView.setAdapter(mAdapter);
     }
+
 }

@@ -177,6 +177,7 @@ public class MainActivity extends BaseActivity {
 
 //    private long exitTime = 0;
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+
 //        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
 //            if((System.currentTimeMillis()-exitTime) > 2000){
 //                Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
