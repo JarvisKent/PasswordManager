@@ -61,7 +61,7 @@ public class AddDataFragment extends BaseFragment implements View.OnClickListene
                     bean.setName(name.getText().toString().trim());
                     bean.setPassword(password.getText().toString().trim());
                     dataDao.add(bean);
-                    showMessage();
+                    showMessage(bean);
                 }else{
                     Toast.makeText(getActivity(),"账号和密码不能为空!",Toast.LENGTH_SHORT).show();
                 }
@@ -76,14 +76,13 @@ public class AddDataFragment extends BaseFragment implements View.OnClickListene
         }
     }
     FragmentManager mFM;
-    private void showMessage() {
+    private void showMessage(DataBean bean) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("确认保存");
-        builder.setMessage("哈哈");
+        builder.setMessage("类型："+bean.getName()+"\n 账号："+bean.getAccount()+"\n 描述："+bean.getDesc());
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
                 turnMain();
             }
         });

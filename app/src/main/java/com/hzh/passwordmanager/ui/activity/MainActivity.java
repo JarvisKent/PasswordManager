@@ -185,24 +185,25 @@ public class MainActivity extends BaseActivity {
 //            return true;
 //        }
 //        return super.onKeyDown(keyCode, event);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("退出程序");
-        builder.setMessage("确认退出PM ？");
-        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                ActivityCollector.finishAll();
-            }
-        });
-        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        builder.create().show();
-
-        return true;
+        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("退出程序");
+            builder.setMessage("确认退出PM ？");
+            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    ActivityCollector.finishAll();
+                }
+            });
+            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.create().show();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
