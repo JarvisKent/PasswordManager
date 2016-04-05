@@ -68,6 +68,7 @@ public class DataDao {
         values.put(SQLiteHelper.PASSWORD,data.getPassword());
         if (checkDb()) {
             long position = dataBase.insert(SQLiteHelper.TABLE, SQLiteHelper.ID, values);
+            System.out.println("添加成功");
             return Integer.parseInt(position+"");
         }
         return -1;

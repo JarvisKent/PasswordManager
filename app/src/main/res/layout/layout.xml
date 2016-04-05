@@ -4,8 +4,6 @@
     android:layout_margin="5dp"
     android:layout_height="wrap_content">
     <com.daimajia.swipe.SwipeLayout
-        android:layout_marginTop="3dp"
-        android:layout_marginLeft="3dp"
         android:layout_width="match_parent"
         android:id="@+id/swipelayout"
         android:layout_height="wrap_content">
@@ -50,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_name"
                 android:textColor="@android:color/black"
-                android:text="类型：类型1"
+                android:text="类型："
                 android:textSize="15sp"/>
 
 
@@ -60,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tv_desc"
                 android:textColor="@android:color/black"
-                android:text="描述：详细的描述"
+                android:text="描述："
                 android:textSize="15sp"/>
         </LinearLayout>
     </com.daimajia.swipe.SwipeLayout>

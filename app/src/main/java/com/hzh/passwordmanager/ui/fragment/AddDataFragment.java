@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.hzh.passwordmanager.R;
+import com.hzh.passwordmanager.bean.DataBean;
 import com.hzh.passwordmanager.db.dao.DataDao;
 import com.hzh.passwordmanager.ui.base.BaseFragment;
 /**
@@ -50,13 +51,21 @@ public class AddDataFragment extends BaseFragment implements View.OnClickListene
             case R.id.btn_add:
 
                 //只要保证账号密码不为空即可
-                if (isNotNull(password.getText().toString().trim()) && isNotNull(account.getText().toString().trim())){
+                if (isNotNull(password.getText().toString().trim()) && isNotNull(account.getText().toString().trim()) && isNotNull(kind.getText().toString().trim())){
+                    dataDao = new DataDao(getActivity());
                     //弹窗提示确认数据是否保存。
+                    DataBean bean = new DataBean();
+                    bean.setAccount(account.getText().toString().trim());
+                    bean.setKind(Integer.valueOf(kind.getText().toString().trim()));
+                    bean.setDesc(desc.getText().toString().trim());
+                    bean.setName(name.getText().toString().trim());
+                    bean.setPassword(password.getText().toString().trim());
+                    dataDao.add(bean);
                     showMessage();
                 }else{
                     Toast.makeText(getActivity(),"账号和密码不能为空!",Toast.LENGTH_SHORT).show();
                 }
-                    break;
+                break;
             case R.id.btn_cancel:
 
                 //取消则返回主页面
@@ -83,7 +92,6 @@ public class AddDataFragment extends BaseFragment implements View.OnClickListene
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                turnMain();
                 dialog.dismiss();
             }
         });

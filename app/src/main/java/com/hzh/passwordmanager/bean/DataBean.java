@@ -28,8 +28,6 @@ public class DataBean implements Parcelable{
         }
     };
 
-
-
     public int getId() {
         return id;
     }

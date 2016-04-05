@@ -1,20 +1,19 @@
 package com.hzh.passwordmanager.ui.fragment;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.hzh.passwordmanager.R;
 import com.hzh.passwordmanager.adapter.MainListAdapter;
+import com.hzh.passwordmanager.bean.DataBean;
+import com.hzh.passwordmanager.db.dao.DataDao;
 import com.hzh.passwordmanager.ui.base.BaseFragment;
 
 import java.util.ArrayList;
@@ -27,6 +26,13 @@ public class MainListFragment extends BaseFragment {
     private RecyclerView recyclerView;
     public MainListFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onResume() {
+        //TODO 刷新数据
+
+        super.onResume();
     }
 
     @Override
@@ -82,10 +88,10 @@ public class MainListFragment extends BaseFragment {
      * 初始化数据
      */
     private void initData() {
-        //创建并设置Adapter
-        List<String> list = new ArrayList<String>();
-        for(int i=0;i<100;i++)  list.add("第"+i+"个");
-        MainListAdapter mAdapter = new MainListAdapter(list,getActivity());
+        DataDao dao = new DataDao(getActivity());
+        List<DataBean> data = new ArrayList<DataBean>();
+        data = dao.queryAll();
+        MainListAdapter mAdapter = new MainListAdapter(data,getActivity());
         recyclerView.setAdapter(mAdapter);
     }
 
