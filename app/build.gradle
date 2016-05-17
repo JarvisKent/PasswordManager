@@ -35,8 +35,12 @@ dependencies {
     //引导页
     compile 'com.github.paolorotolo:appintro:3.4.0'
     compile 'com.android.support:design:23.2.0'
-//    compile 'com.android.support:support-v4:23.2.0'
+//compile 'com.android.support:support-v4:23.2.0'
     //FloatingActionButton   https://github.com/Clans/FloatingActionButton/wiki/Changelog
     compile 'com.github.clans:fab:1.6.2'
+
+    //fastjson  最快的json库   http://repo1.maven.org/maven2/com/alibaba/fastjson/
+    // https://github.com/alibaba/fastjson/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98
+   // compile 'com.alibaba:fastjson:1.1.47.android'
 
 }

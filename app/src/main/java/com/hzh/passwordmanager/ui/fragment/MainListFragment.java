@@ -1,9 +1,6 @@
 package com.hzh.passwordmanager.ui.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +12,7 @@ import com.hzh.passwordmanager.adapter.MainListAdapter;
 import com.hzh.passwordmanager.bean.DataBean;
 import com.hzh.passwordmanager.db.dao.DataDao;
 import com.hzh.passwordmanager.ui.base.BaseFragment;
+import com.hzh.passwordmanager.utils.SwitchPage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +37,6 @@ public class MainListFragment extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-    FragmentManager mFM;
     private boolean isInvisiable = true;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,25 +48,13 @@ public class MainListFragment extends BaseFragment {
         addData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment f = new AddDataFragment();
-                if (null == mFM)
-                    mFM = getActivity().getSupportFragmentManager();
-                FragmentTransaction ft = mFM.beginTransaction();
-                ft.replace(R.id.fl_content, f);
-                ft.commit();
-
+                SwitchPage.toAddData(getActivity(),R.id.fl_content);
             }
         });
         searchData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment f = new SearchDataFragment();
-                if(null == mFM){
-                    mFM = getActivity().getSupportFragmentManager();
-                }
-                FragmentTransaction ft = mFM.beginTransaction();
-                ft.replace(R.id.fl_content,f);
-                ft.commit();
+              SwitchPage.toSearchData(getActivity(),R.id.fl_content);
             }
         });
         //创建默认的线性LayoutManager

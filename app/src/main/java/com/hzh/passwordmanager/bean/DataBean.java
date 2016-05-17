@@ -3,6 +3,8 @@ package com.hzh.passwordmanager.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
+
 /**
  * Created by JarvisHuang on 2016/3/9.
  */
@@ -15,7 +17,7 @@ public class DataBean implements Parcelable{
     private String desc;
 
     public DataBean(){}
-
+    // 用来创建自定义的Parcelable的对象
     public static final Creator<DataBean> CREATOR = new Creator<DataBean>() {
         @Override
         public DataBean createFromParcel(Parcel in) {
@@ -92,7 +94,7 @@ public class DataBean implements Parcelable{
     public int describeContents() {
         return 0;
     }
-
+    // 写数据进行保存
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(this.id);
@@ -102,6 +104,7 @@ public class DataBean implements Parcelable{
         dest.writeInt(this.kind);
         dest.writeString(this.desc);
     }
+    // 读数据进行恢复
     protected DataBean(Parcel in) {
         this.id = in.readInt();
         this.kind = in.readInt();

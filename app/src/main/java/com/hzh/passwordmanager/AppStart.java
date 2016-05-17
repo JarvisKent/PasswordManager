@@ -10,6 +10,7 @@ import com.hzh.passwordmanager.utils.PreferencesUtils;
 
 /**
  * Created by JarvisHuang on 2016/3/9.
+ *
  */
 public class AppStart extends AppCompatActivity {
     public static String TAG = "APP_START";

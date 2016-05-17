@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.hzh.passwordmanager.R;
 import com.hzh.passwordmanager.ui.base.BaseFragment;
@@ -21,7 +22,7 @@ public class WriteAndRead extends BaseFragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_write_and_read, container, false);
-
+        Toast.makeText(getActivity(),"写入导出",Toast.LENGTH_SHORT).show();
         return view;
     }
 

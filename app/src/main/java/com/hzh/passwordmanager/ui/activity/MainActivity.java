@@ -3,9 +3,6 @@ package com.hzh.passwordmanager.ui.activity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
@@ -17,11 +14,7 @@ import android.widget.Toast;
 
 import com.hzh.passwordmanager.R;
 import com.hzh.passwordmanager.ui.base.BaseActivity;
-import com.hzh.passwordmanager.ui.fragment.MainListFragment;
-import com.hzh.passwordmanager.ui.fragment.ModifyShowPassword;
-import com.hzh.passwordmanager.ui.fragment.SettingFragment;
-import com.hzh.passwordmanager.ui.fragment.WriteAndRead;
-import com.hzh.passwordmanager.utils.ActivityCollector;
+import com.hzh.passwordmanager.utils.SwitchPage;
 import com.hzh.passwordmanager.utils.TranslucentStatus;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -37,7 +30,8 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 public class MainActivity extends BaseActivity {
 
-    FragmentManager mFM;
+    private static final String TAG = "MainActivity";
+
 
     FrameLayout fl;
 
@@ -50,10 +44,16 @@ public class MainActivity extends BaseActivity {
         //自定义Toolbar
         toolbar.setTitle(R.string.app_name);
         setSupportActionBar(toolbar);
-
         //沉浸式状态栏
         TranslucentStatus.initState(this,R.id.ll_bar);
-        changeMain();
+
+        changeFragment(SwitchPage.MAIN);
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -67,39 +67,11 @@ public class MainActivity extends BaseActivity {
         super.onResume();
     }
 
-    private void changeMain(){
-        Fragment f = new MainListFragment();
-        if (null == mFM)
-            mFM = getSupportFragmentManager();
-        FragmentTransaction ft = mFM.beginTransaction();
-        ft.replace(R.id.fl_content, f);
-        ft.commit();
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
-    private void changeSetting(){
-        Fragment f = new SettingFragment();
-        if (null == mFM)
-            mFM = getSupportFragmentManager();
-        FragmentTransaction ft = mFM.beginTransaction();
-        ft.replace(R.id.fl_content, f);
-        ft.commit();
-    }
-    private void changeWriteAndRead(){
-        Fragment f = new WriteAndRead();
-        if (null == mFM)
-            mFM = getSupportFragmentManager();
-        FragmentTransaction ft = mFM.beginTransaction();
-        ft.replace(R.id.fl_content, f);
-        ft.commit();
-    }
-    private void changeModifyPassword(){
 
-        Fragment f = new ModifyShowPassword();
-        if (null == mFM)
-            mFM = getSupportFragmentManager();
-        FragmentTransaction ft = mFM.beginTransaction();
-        ft.replace(R.id.fl_content, f);
-        ft.commit();
-    }
     private void SlideDraw(Toolbar toolbar) {
         //自定义侧边栏
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName(R.string.drawer_item_home).withIcon(R.drawable.material_drawer_badge);
@@ -120,8 +92,8 @@ public class MainActivity extends BaseActivity {
                 })
                 .build();
 
-        new DrawerBuilder().withActivity(this).withToolbar(toolbar).
-                withAccountHeader(headerResult)
+        new DrawerBuilder().withActivity(this).withToolbar(toolbar)
+                .withAccountHeader(headerResult)
                 .withActionBarDrawerToggle(true)
                 .addDrawerItems(
                         item1,
@@ -142,16 +114,16 @@ public class MainActivity extends BaseActivity {
     private void changeFragment(int position) {
         switch(position){
             case 1://首页
-                changeMain();
+                SwitchPage.toMain(this,R.id.fl_content);
                 break;
             case 3://导入导出
-                changeWriteAndRead();
+                SwitchPage.toImportAndExport(this,R.id.fl_content);
                 break;
             case 4://修改查看密码
-                changeModifyPassword();
+                SwitchPage.toMotifyPassword(this,R.id.fl_content);
                 break;
             case 5://设置
-                changeSetting();
+                SwitchPage.toSetting(this,R.id.fl_content);
                 break;
             default:
                 break;
@@ -186,22 +158,32 @@ public class MainActivity extends BaseActivity {
 //        }
 //        return super.onKeyDown(keyCode, event);
         if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("退出程序");
-            builder.setMessage("确认退出PM ？");
-            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    ActivityCollector.finishAll();
-                }
-            });
-            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
-            builder.create().show();
+
+//            if(SwitchPage.CURRENT_PAGE != SwitchPage.MAIN){
+//                SwitchPage.toMain(this,R.id.fl_content);
+//            }else{
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("退出程序");
+                builder.setMessage("确认退出PM ？");
+                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//                        ActivityManager manager = (ActivityManager)MainActivity.this.getSystemService(ACTIVITY_SERVICE); //获取应用程序管理器
+//                        manager.killBackgroundProcesses(getPackageName()); //强制结束当前应用程序
+
+                        int pid = android.os.Process.myPid();	//获取当前应用程序的PID
+                        android.os.Process.killProcess(pid);	//杀死当前进程
+                        //    http://blog.jobbole.com/66117/  状态丢失
+//                        ActivityCollector.finishAll();
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                builder.create().show();
+//            }
             return true;
         }
         return super.onKeyDown(keyCode, event);

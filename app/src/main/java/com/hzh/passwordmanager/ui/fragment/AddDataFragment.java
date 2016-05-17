@@ -3,9 +3,7 @@ package com.hzh.passwordmanager.ui.fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +16,11 @@ import com.hzh.passwordmanager.R;
 import com.hzh.passwordmanager.bean.DataBean;
 import com.hzh.passwordmanager.db.dao.DataDao;
 import com.hzh.passwordmanager.ui.base.BaseFragment;
+import com.hzh.passwordmanager.utils.SwitchPage;
+
 /**
  * Created by JarvisHuang on 2016/3/31.
+ *
  */
 public class AddDataFragment extends BaseFragment implements View.OnClickListener{
 
@@ -79,19 +80,16 @@ public class AddDataFragment extends BaseFragment implements View.OnClickListene
     private void showMessage(DataBean bean) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("确认保存");
-        builder.setMessage("类型："+bean.getName()+"\n 账号："+bean.getAccount()+"\n 描述："+bean.getDesc());
+        builder.setMessage("  类型："+bean.getName()+"\n 账号："+bean.getAccount()+"\n 描述："+bean.getDesc());
         builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 turnMain();
             }
         });
-
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-                dialog.dismiss();
             }
         });
         builder.create().show();
@@ -102,12 +100,7 @@ public class AddDataFragment extends BaseFragment implements View.OnClickListene
     }
 
     void turnMain(){
-        Fragment f = new MainListFragment();
-        if (null == mFM)
-            mFM = getActivity().getSupportFragmentManager();
-        FragmentTransaction ft = mFM.beginTransaction();
-        ft.replace(R.id.fl_content, f);
-        ft.commit();
+        SwitchPage.toMain(getActivity(),R.id.fl_content);
     }
 
 }

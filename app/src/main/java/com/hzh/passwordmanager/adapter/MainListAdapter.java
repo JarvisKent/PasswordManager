@@ -57,7 +57,6 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 //获取数据，跳转到修改页面
-
                 Fragment f = new MotifyDataFragment();
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("motifyData",datas.get(position));
@@ -100,20 +99,18 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ViewHo
                 builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        dialog.dismiss();
                     }
                 });
                 builder.create().show();
             }
         });
     }
-
     /**
      *获取数据的数量
      */
     @Override
     public int getItemCount() {
-
         return datas.size();
     }
 

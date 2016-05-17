@@ -21,6 +21,7 @@ public class MotifyDataFragment extends BaseFragment implements View.OnClickList
         Bundle data =getArguments();
         DataBean datas = data.getParcelable("motifyData");
         tv.setText("传递:"+datas.toString());
+
         return view;
     }
 
