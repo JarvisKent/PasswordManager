@@ -14,6 +14,14 @@
             android:layout_height="match_parent">
             <!--What you want to show-->
             <Button
+                android:id="@+id/copyData"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@android:color/white"
+                android:background="@android:color/holo_green_light"
+                android:text="复制"/>
+            <Button
                 android:id="@+id/motifyData"
                 android:layout_weight="1"
                 android:layout_width="match_parent"

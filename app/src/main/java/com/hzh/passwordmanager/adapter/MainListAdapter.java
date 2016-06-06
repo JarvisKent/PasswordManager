@@ -8,11 +8,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.text.ClipboardManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.daimajia.swipe.SwipeLayout;
 import com.hzh.passwordmanager.R;
@@ -29,6 +31,9 @@ import java.util.List;
 public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ViewHolder> {
     public List<DataBean> datas = null;
     public Context context;
+
+
+
     public MainListAdapter(List<DataBean> list, Context context) {
         this.datas = list;
         this.context = context;
@@ -41,6 +46,7 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ViewHo
         ViewHolder vh = new ViewHolder(view);
         return vh;
     }
+
     //将数据与界面进行绑定的操作
     FragmentManager mFM;
     @Override
@@ -56,6 +62,7 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 //获取数据，跳转到修改页面
+                viewHolder.swipeLayout.close();
                 Fragment f = new MotifyDataFragment();
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("modifyData",datas.get(position));
@@ -65,7 +72,6 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ViewHo
                         mFM = ((BaseActivity) context).getSupportFragmentManager();
                     FragmentTransaction ft = mFM.beginTransaction();
                     ft.replace(R.id.fl_content, f);
-
                     ft.commit();
                 }
             }
@@ -106,6 +112,15 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ViewHo
                 builder.create().show();
             }
         });
+        viewHolder.copyData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClipboardManager c= (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
+                viewHolder.swipeLayout.close();
+                Toast.makeText(context,datas.get(position).getPassword(),Toast.LENGTH_LONG).show();
+                c.setText(datas.get(position).getPassword());
+            }
+        });
     }
     /**
      *获取数据的数量
@@ -119,7 +134,7 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView tvName,tvDesc,tvAccount;
         public com.daimajia.swipe.SwipeLayout swipeLayout;
-        public Button delete,motifyData;
+        public Button delete,motifyData,copyData;
         public ViewHolder(View view) {
             super(view);
             tvName = (TextView) view.findViewById(R.id.tv_name);
@@ -128,7 +143,7 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ViewHo
             swipeLayout = (SwipeLayout) view.findViewById(R.id.swipelayout);
             delete = (Button) view.findViewById(R.id.delete);
             motifyData = (Button) view.findViewById(R.id.motifyData);
+            copyData = (Button) view.findViewById(R.id.copyData);
         }
     }
-
 }
