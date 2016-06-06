@@ -100,6 +100,7 @@ public class MainActivity extends BaseActivity {
                         new DividerDrawerItem(),
                         item2,
                         new SecondaryDrawerItem().withName(R.string.modifyPwd),
+                        new SecondaryDrawerItem().withName(R.string.kind_manager).withDescription("根据权重进行管理"),
                         new SecondaryDrawerItem().withName(R.string.drawer_item_settings)
                 ) .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
 
@@ -164,7 +165,7 @@ public class MainActivity extends BaseActivity {
 //            }else{
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("退出程序");
-                builder.setMessage("确认退出PM ？");
+                builder.setMessage("确认退出应用 ？");
                 builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

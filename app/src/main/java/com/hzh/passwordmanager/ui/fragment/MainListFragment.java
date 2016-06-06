@@ -74,8 +74,7 @@ public class MainListFragment extends BaseFragment {
      */
     private void initData() {
         DataDao dao = new DataDao(getActivity());
-        List<DataBean> data = new ArrayList<DataBean>();
-        data = dao.queryAll();
+        List<DataBean> data =dao.queryAll();
         MainListAdapter mAdapter = new MainListAdapter(data,getActivity());
         recyclerView.setAdapter(mAdapter);
     }
