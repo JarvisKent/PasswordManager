@@ -2,6 +2,7 @@ package com.hzh.passwordmanager.ui.activity;
 
 
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
@@ -48,7 +49,6 @@ public class MainActivity extends BaseActivity {
         TranslucentStatus.initState(this,R.id.ll_bar);
 
         changeFragment(SwitchPage.MAIN);
-
     }
 
     @Override
@@ -100,7 +100,7 @@ public class MainActivity extends BaseActivity {
                         new DividerDrawerItem(),
                         item2,
                         new SecondaryDrawerItem().withName(R.string.modifyPwd),
-                        new SecondaryDrawerItem().withName(R.string.kind_manager).withDescription("根据权重进行管理"),
+                        new SecondaryDrawerItem().withName(R.string.kind_manager).withDescription("根据权重进行管理").withDescriptionTextColor(Color.GRAY),
                         new SecondaryDrawerItem().withName(R.string.drawer_item_settings)
                 ) .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
 

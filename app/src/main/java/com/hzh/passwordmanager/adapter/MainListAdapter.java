@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.daimajia.swipe.SwipeLayout;
 import com.hzh.passwordmanager.R;
@@ -59,14 +60,16 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ViewHo
                 //获取数据，跳转到修改页面
                 Fragment f = new MotifyDataFragment();
                 Bundle bundle = new Bundle();
-                bundle.putParcelable("motifyData",datas.get(position));
+                bundle.putParcelable("modifyData",datas.get(position));
                 f.setArguments(bundle);
-                if (null == mFM)
-                    mFM = ((BaseActivity)context).getSupportFragmentManager();
-                FragmentTransaction ft = mFM.beginTransaction();
-                ft.replace(R.id.fl_content, f);
+                if(datas.get(position) !=null) {
+                    if (null == mFM)
+                        mFM = ((BaseActivity) context).getSupportFragmentManager();
+                    FragmentTransaction ft = mFM.beginTransaction();
+                    ft.replace(R.id.fl_content, f);
 
-                ft.commit();
+                    ft.commit();
+                }
             }
         });
         /**
@@ -84,7 +87,7 @@ public class MainListAdapter extends RecyclerView.Adapter<MainListAdapter.ViewHo
                 final DataDao dao = new DataDao(context);
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("删除");
-                builder.setMessage("确定删除"+datas.get(position)+"?");
+                builder.setMessage("确定删除“"+datas.get(position).getName()+"”?");
                 builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
