@@ -19,13 +19,13 @@ import com.hzh.passwordmanager.utils.SwitchPage;
  * Created by JarvisHuang on 2016/4/5.
  */
 public class MotifyDataFragment extends BaseFragment implements View.OnClickListener {
-    DataDao dataDao;
-    EditText name;
-    EditText id;
-    EditText pwd;
-    EditText kind;
-    EditText desc;
-    DataBean datas;
+    private DataDao dataDao;
+    private EditText name;
+    private EditText id;
+    private EditText pwd;
+    private EditText kind;
+    private EditText desc;
+    private DataBean datas;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_motify_data,container,false);

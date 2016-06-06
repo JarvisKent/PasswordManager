@@ -13,14 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.daimajia.swipe.SwipeLayout;
 import com.hzh.passwordmanager.R;
 import com.hzh.passwordmanager.bean.DataBean;
 import com.hzh.passwordmanager.db.dao.DataDao;
 import com.hzh.passwordmanager.ui.base.BaseActivity;
-import com.hzh.passwordmanager.ui.fragment.AddDataFragment;
 import com.hzh.passwordmanager.ui.fragment.MotifyDataFragment;
 
 import java.util.List;
