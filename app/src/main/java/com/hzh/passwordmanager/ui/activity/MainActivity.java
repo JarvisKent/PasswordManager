@@ -75,7 +75,7 @@ public class MainActivity extends BaseActivity {
     private void SlideDraw(Toolbar toolbar) {
         //自定义侧边栏
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName(R.string.drawer_item_home).withIcon(R.drawable.material_drawer_badge);
-        SecondaryDrawerItem item2 = new SecondaryDrawerItem().withName(R.string.writeAndread);
+        SecondaryDrawerItem item2 = new SecondaryDrawerItem().withName(R.string.writeAndread).withDescription("导出到本地内存");
 
         AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
@@ -99,9 +99,9 @@ public class MainActivity extends BaseActivity {
                         item1,
                         new DividerDrawerItem(),
                         item2,
-                        new SecondaryDrawerItem().withName(R.string.modifyPwd),
-                        new SecondaryDrawerItem().withName(R.string.kind_manager).withDescription("根据权重进行管理").withDescriptionTextColor(Color.GRAY),
-                        new SecondaryDrawerItem().withName(R.string.drawer_item_settings)
+                        new SecondaryDrawerItem().withName(R.string.modifyPwd).withDescription("不是应用登录密码"),
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_settings).withDescription("配置应用参数"),
+                        new SecondaryDrawerItem().withName(R.string.kind_manager).withDescription("根据权重进行管理").withDescriptionTextColor(Color.GRAY)
                 ) .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
 
             @Override
@@ -125,6 +125,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case 5://设置
                 SwitchPage.toSetting(this,R.id.fl_content);
+                break;
+            case 6:
+                SwitchPage.toMotifyKind(this,R.id.fl_content);
                 break;
             default:
                 break;
@@ -163,27 +166,27 @@ public class MainActivity extends BaseActivity {
 //            if(SwitchPage.CURRENT_PAGE != SwitchPage.MAIN){
 //                SwitchPage.toMain(this,R.id.fl_content);
 //            }else{
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("退出程序");
-                builder.setMessage("确认退出应用 ？");
-                builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("退出程序");
+            builder.setMessage("确认退出应用 ？");
+            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
 //                        ActivityManager manager = (ActivityManager)MainActivity.this.getSystemService(ACTIVITY_SERVICE); //获取应用程序管理器
 //                        manager.killBackgroundProcesses(getPackageName()); //强制结束当前应用程序
 
-                        int pid = android.os.Process.myPid();	//获取当前应用程序的PID
-                        android.os.Process.killProcess(pid);	//杀死当前进程
-                        //    http://blog.jobbole.com/66117/  状态丢失
+                    int pid = android.os.Process.myPid();	//获取当前应用程序的PID
+                    android.os.Process.killProcess(pid);	//杀死当前进程
+                    //    http://blog.jobbole.com/66117/  状态丢失
 //                        ActivityCollector.finishAll();
-                    }
-                });
-                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
-                builder.create().show();
+                }
+            });
+            builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+            builder.create().show();
 //            }
             return true;
         }
