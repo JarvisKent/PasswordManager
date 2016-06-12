@@ -75,13 +75,13 @@ public class MainActivity extends BaseActivity {
     private void SlideDraw(Toolbar toolbar) {
         //自定义侧边栏
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName(R.string.drawer_item_home).withIcon(R.drawable.material_drawer_badge);
-        SecondaryDrawerItem item2 = new SecondaryDrawerItem().withName(R.string.writeAndread).withDescription("导出到本地内存");
+        SecondaryDrawerItem item2 = new SecondaryDrawerItem().withName(R.string.writeAndread).withDescription("本为导出excel到内存，未实现");
 
         AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withHeaderBackground(R.mipmap.cb0304yp02)
                 .addProfiles(
-                        new ProfileDrawerItem().withName("hzh").withEmail("000000000@qq.com").withIcon(getResources().getDrawable(R.mipmap.ic_launcher))
+                        new ProfileDrawerItem().withName("Jarvis").withEmail("602955736@qq.com").withIcon(getResources().getDrawable(R.mipmap.ic_launcher))
                 )
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
@@ -99,9 +99,8 @@ public class MainActivity extends BaseActivity {
                         item1,
                         new DividerDrawerItem(),
                         item2,
-                        new SecondaryDrawerItem().withName(R.string.modifyPwd).withDescription("不是应用登录密码"),
-                        new SecondaryDrawerItem().withName(R.string.drawer_item_settings).withDescription("配置应用参数"),
-                        new SecondaryDrawerItem().withName(R.string.kind_manager).withDescription("根据权重进行管理").withDescriptionTextColor(Color.GRAY)
+                        new SecondaryDrawerItem().withName(R.string.modifyPwd).withDescription("未实现"),
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_settings).withDescription("配置应用参数")
                 ) .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
 
             @Override
@@ -126,9 +125,7 @@ public class MainActivity extends BaseActivity {
             case 5://设置
                 SwitchPage.toSetting(this,R.id.fl_content);
                 break;
-            case 6:
-                SwitchPage.toMotifyKind(this,R.id.fl_content);
-                break;
+
             default:
                 break;
         }

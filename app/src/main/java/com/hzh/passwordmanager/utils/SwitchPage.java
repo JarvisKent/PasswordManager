@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentTransaction;
 import com.hzh.passwordmanager.ui.activity.MainActivity;
 import com.hzh.passwordmanager.ui.base.BaseActivity;
 import com.hzh.passwordmanager.ui.fragment.AddDataFragment;
-import com.hzh.passwordmanager.ui.fragment.ChangeKind;
 import com.hzh.passwordmanager.ui.fragment.MainListFragment;
 import com.hzh.passwordmanager.ui.fragment.ModifyShowPassword;
 import com.hzh.passwordmanager.ui.fragment.MotifyDataFragment;
@@ -50,15 +49,7 @@ public class SwitchPage {
         ft.commitAllowingStateLoss();
         CURRENT_PAGE = SETTING;
     }
-    public static  void toMotifyKind(Context context,int id){
-        Fragment f = new ChangeKind();
-        if (null == mFM)
-            mFM = ((BaseActivity)context).getSupportFragmentManager();
-        FragmentTransaction ft = mFM.beginTransaction();
-        ft.replace(id, f);
-        ft.commitAllowingStateLoss();
-        CURRENT_PAGE = SETTING;
-    }
+
     public static  void toImportAndExport(Context context,int id){
         Fragment f = new WriteAndRead();
         if (null == mFM)
@@ -78,15 +69,7 @@ public class SwitchPage {
         ft.commitAllowingStateLoss();
         CURRENT_PAGE = MOTIFY_PASSWORD;
     }
-    public static void toMotifyData(Context context,int id){
-        Fragment f = new MotifyDataFragment();
-        if (null == mFM)
-            mFM = ((BaseActivity)context).getSupportFragmentManager();
-        FragmentTransaction ft = mFM.beginTransaction();
-        ft.replace(id, f);
-        ft.commitAllowingStateLoss();
-        CURRENT_PAGE = MOTIFY;
-    }
+
     public static void toAddData(Context context,int id){
         Fragment f = new AddDataFragment();
         if (null == mFM)
